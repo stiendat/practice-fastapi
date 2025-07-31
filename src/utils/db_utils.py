@@ -1,4 +1,5 @@
 from typing import AsyncGenerator
+from contextvars import ContextVar
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -22,5 +23,7 @@ async def create_database_session() -> AsyncGenerator[AsyncSession, None]:
     """
     Create a new database session.
     """
-    async with session_factory() as session:
-        yield session
+    async with session_factory() as db:
+        yield db
+
+db_session_context: ContextVar[AsyncSession] = ContextVar("db_session_context")
