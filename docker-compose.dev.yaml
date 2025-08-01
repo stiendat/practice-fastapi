@@ -1,0 +1,22 @@
+# Development override for docker-compose
+# Use: docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up
+
+version: '3.8'
+
+services:
+  web:
+    # Override command for development with more verbose logging
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --log-level debug
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+    volumes:
+      # Mount additional files for development
+      - ./test_data:/app/test_data
+      - ./import_books.py:/app/import_books.py
+      - ./cli.py:/app/cli.py
+      - ./commands:/app/commands
+
+  # Enable pgAdmin by default in development
+  pgadmin:
+    profiles: []
