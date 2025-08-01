@@ -1,3 +1,54 @@
+# Environment variables
 .env
-.venv
-.idea
+.env.*
+
+# Virtual environments
+.myvenv/
+env/
+myenv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs and debugging
+*.log
+*.out
+*.err
+logs/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing and coverage
+.pytest_cache/
+.tox/
+.nox/
+coverage/
+*.cover
+*.py,cover
+.hypothesis/
+
+# Packaging
+*.egg
+*.egg-info/
+dist/
+build/
+wheels/
+
+# Static files
+staticfiles/
+mediafiles/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
