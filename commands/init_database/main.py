@@ -1,4 +1,4 @@
-from src.models.sample_models import *
+from src.models.models import *
 from src.utils.db_utils import Base, get_database_url
 
 from sqlalchemy import create_engine
