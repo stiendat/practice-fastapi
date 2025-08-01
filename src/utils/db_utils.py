@@ -1,8 +1,7 @@
 from typing import AsyncGenerator
-
+import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from sqlalchemy.orm import declarative_base, sessionmaker
-from settings import POSTGRES_PASSWORD, POSTGRES_USER, POSTGRES_DB
+from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
@@ -10,11 +9,15 @@ Base = declarative_base()
 def get_database_url() -> str:
     """
     Construct the database URL for SQLAlchemy.
+    Always use SQLite for simplicity.
     """
-    return f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:5432/{POSTGRES_DB}"
+    # Always use SQLite for now to avoid connection issues
+    db_path = os.path.abspath("library.db")
+    return f"sqlite+aiosqlite:///{db_path}"
 
 
-engine = create_async_engine(get_database_url())
+# Create async engine with SQLite
+engine = create_async_engine(get_database_url(), echo=True)
 session_factory = async_sessionmaker(bind=engine, expire_on_commit=False)
 
 

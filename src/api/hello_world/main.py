@@ -11,7 +11,5 @@ router = APIRouter()
 
 
 @router.get("/")
-async def root(
-    request: Request, session: Annotated[AsyncSession, Depends(create_database_session)]
-):
-    return {"message": "Hello World"}
+async def root():
+    return {"message": "Hello World", "status": "API is working!"}
