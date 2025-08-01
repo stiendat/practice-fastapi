@@ -1,6 +1,7 @@
 from typer import Typer
 
 from commands.init_database.main import init_database
+from commands.import_books.main import import_books
 
 app = Typer()
 
@@ -9,6 +10,12 @@ app = Typer()
 def cmd_init_database():
     print("Initializing database")
     init_database()
+
+
+@app.command("import_books")
+def cmd_import_books():
+    print("Importing books from CSV")
+    import_books()
 
 
 @app.command("run_test")

@@ -1,4 +1,4 @@
-from src.models.sample_models import *
+from src.models import Book, User, Rental
 from src.utils.db_utils import Base, get_database_url
 
 from sqlalchemy import create_engine
@@ -11,3 +11,4 @@ def init_database():
     # Create all tables in the database
     Base.metadata.create_all(engine)
     print("Database initialized successfully.")
+    print("Created tables: books, users, rentals")

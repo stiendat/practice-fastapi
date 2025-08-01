@@ -14,7 +14,14 @@ def get_database_url() -> str:
     return f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:5432/{POSTGRES_DB}"
 
 
-engine = create_async_engine(get_database_url())
+def get_async_database_url() -> str:
+    """
+    Construct the async database URL for SQLAlchemy.
+    """
+    return f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:5432/{POSTGRES_DB}"
+
+
+engine = create_async_engine(get_async_database_url())
 session_factory = async_sessionmaker(bind=engine, expire_on_commit=False)
 
 
