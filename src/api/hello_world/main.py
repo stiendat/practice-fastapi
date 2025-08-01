@@ -10,8 +10,8 @@ from src.utils.db_utils import create_database_session
 router = APIRouter()
 
 
-@router.get("/")
-async def root(
+@router.get("/hello")
+async def hello_world_root(
     request: Request, session: Annotated[AsyncSession, Depends(create_database_session)]
 ):
     return {"message": "Hello World"}
