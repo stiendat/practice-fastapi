@@ -1,6 +1,10 @@
-from fastapi import APIRouter
-from src.api.hello_world.main import router as hello_world_router
+from fastapi import FastAPI
+from model.database import Base, engine
+from api.route import books
+# Tạo bảng nếu chưa có
+Base.metadata.create_all(bind=engine)
 
-router = APIRouter()
+app = FastAPI()
 
-router.include_router(hello_world_router)
+# Include router
+app.include_router(books.router)
