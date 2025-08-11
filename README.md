@@ -1,19 +1,39 @@
 # README
 
-Repo này sử dụng để lưu trữ bài tập cho phần Lập trình Backend sử dụng FastAPI.
+## Quick Start
 
-Nội dung bài tập sẽ được ghi trong file `Practice.md` trong thư mục gốc của repo này.
+1. Install [Loki Docker Driver](https://grafana.com/docs/loki/latest/send-data/docker-driver/)
 
-Cách làm bài sẽ gồm các bước sau:
+   ```bash
+   # For ARM64
+   docker plugin install grafana/loki-docker-driver:3.3.2-arm64 --alias loki --grant-all-permissions
+   # For AMD64
+   docker plugin install grafana/loki-docker-driver:3.3.2-amd64 --alias loki --grant-all-permissions
+   ```
+2. Start all services with docker-compose
 
-1. Fork repo này về tài khoản của bạn.
-2. Thực hiện chỉnh sửa project theo yêu cầu trong file `Practice.md`.
-3. Commit và push code lên repo của bạn.
-4. Tạo Pull Request tới repo này, trỏ tới nhánh bài tập tương ứng.
-5. Copy link PR và gửi trong form bài tập.
+   ```bash
+   docker-compose up -d
+   ```
 
-Trong repo đã có sẵn một số phần mẫu để tham khảo, bao gồm:
+   If got the error message `Error response from daemon: error looking up logging plugin loki: plugin loki found but disabled`, please run the following command to enable the plugin:
 
-- `docker-compose.yml`: File cấu hình Docker Compose để khởi động ứng dụng.
-- Cấu trúc thư mục
-- `.env`: File môi trường mẫu để cấu hình các biến môi trường cần thiết.
+   ```bash
+   docker plugin enable loki
+   ```
+3. Check predefined dashboard `FastAPI Observability` on Grafana [http://localhost:3000/](http://localhost:3000/) login with `admin:admin`
+
+    Dashboard screenshot:
+![grafana.png](pic/grafana.png)
+
+4. FastAPI documentation is available at [http://localhost:8000/docs](http://localhost:8000/docs)
+
+## Test requests with jmeter 1000 requests
+summary results:
+![summary.png](pic/summary.png)
+summary graph:
+![graph.png](pic/graph.png)
+
+## Reference
+
+- [FastAPI Observability](https://github.com/blueswen/fastapi-observability)
