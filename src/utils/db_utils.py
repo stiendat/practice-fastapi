@@ -11,7 +11,7 @@ def create_todo(todo_create: TodoCreate) -> Todo:
     todo = Todo(
         id=todo_id,
         title=todo_create.title,
-        completed=todo_create.completed,
+        completed=todo_create.completed if todo_create.completed is not None else False,
         created_at=now,
         updated_at=now,
     )
