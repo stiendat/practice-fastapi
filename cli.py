@@ -1,22 +1,20 @@
-from typer import Typer
-
+"""
+CLI tool for Library Management System
+"""
+import asyncio
+import typer
 from commands.init_database.main import init_database
 
-app = Typer()
+app = typer.Typer()
 
 
-@app.command("init_database")
-def cmd_init_database():
-    print("Initializing database")
-    init_database()
-
-
-@app.command("run_test")
-def cmd_run_test():
-    print("Running tests")
-    # TODO: Add test execution logic here
-    print("Tests executed successfully")
+@app.command()
+def init_database():
+    """
+    Initialize database: create tables and import initial data from CSV.
+    """
+    asyncio.run(init_database())
 
 
 if __name__ == "__main__":
-    app()
+    app() 
