@@ -2,7 +2,7 @@ from typing import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import declarative_base, sessionmaker
-from settings import POSTGRES_PASSWORD, POSTGRES_USER, POSTGRES_DB
+from settings import POSTGRES_PASSWORD, POSTGRES_USER, POSTGRES_DB, POSTGRES_PORT
 
 Base = declarative_base()
 
@@ -11,7 +11,7 @@ def get_database_url() -> str:
     """
     Construct the database URL for SQLAlchemy.
     """
-    return f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:5432/{POSTGRES_DB}"
+    return f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 
 engine = create_async_engine(get_database_url())

@@ -1,6 +1,6 @@
 from typer import Typer
 
-from commands.init_database.main import init_database
+from commands.init_database.main import main as init_database
 
 app = Typer()
 
