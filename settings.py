@@ -17,7 +17,7 @@ def get_config(key: str, default: Optional[str] = None) -> Optional[str]:
 ### DEFAULT SETTINGS
 
 POSTGRES_PASSWORD = get_config(key="POSTGRES_PASSWORD", default="password")
-POSTGRES_USER = get_config(key="POSTGRES_USER", default="user")
-POSTGRES_DB = get_config(key="POSTGRES_DB", default="database")
-
-###
+POSTGRES_USER = get_config(key="POSTGRES_USER", default="postgres")
+POSTGRES_DB = get_config(key="POSTGRES_DB", default="postgres")
+POSTGRES_HOST = get_config(key="POSTGRES_HOST", default="localhost")
+POSTGRES_PORT = get_config(key="POSTGRES_PORT", default="5431")
